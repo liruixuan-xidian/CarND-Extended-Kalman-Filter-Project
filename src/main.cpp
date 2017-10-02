@@ -4,7 +4,7 @@
 #include <math.h>
 #include "FusionEKF.h"
 #include "tools.h"
-
+#include "measurement_package.h"
 using namespace std;
 
 // for convenience
@@ -76,6 +76,7 @@ int main()
           		meas_package.raw_measurements_ << px, py;
           		iss >> timestamp;
           		meas_package.timestamp_ = timestamp;
+                cout<<"Laser is called"<<endl;
           } else if (sensor_type.compare("R") == 0) {
 
       	  		meas_package.sensor_type_ = MeasurementPackage::RADAR;
@@ -89,6 +90,7 @@ int main()
           		meas_package.raw_measurements_ << ro,theta, ro_dot;
           		iss >> timestamp;
           		meas_package.timestamp_ = timestamp;
+                cout<<"rader is called"<<endl;
           }
           float x_gt;
     	  float y_gt;
@@ -145,7 +147,8 @@ int main()
       }
     }
 
-  });
+  }
+  );
 
   // We don't need this since we're not using HTTP but if it's removed the program
   // doesn't compile :-(
